@@ -1,0 +1,10 @@
+{
+    "host": "127.0.0.1",
+    "port": "5000",
+    "debug": false,
+    "upload_files_directory": "upload_files",
+    "after_upload_scripts": {
+        ".jpg": "python image_processor.py",
+        ".jpeg": "python image_processor.py"
+    }
+}

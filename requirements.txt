@@ -1,0 +1,9 @@
+aiohttp
+codetiming
+mozjpeg_lossless_optimization
+numpy
+opencv_python
+Pillow
+quart
+SSIM_PIL
+Werkzeug

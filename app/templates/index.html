@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="{{lang}}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Images uploader</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/static/site.webmanifest">
+    <link rel="stylesheet" href="/static/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="buttons-panel">
+            <div class="button-container">
+                <form method="post" enctype="multipart/form-data">
+                    <label class="input-files-label" id="input_files_label">
+                        <input type="file" name="files-input" id="files_input" multiple>
+                        <span id="input_files_label_text"></span>
+                    </label>
+                </form>
+            </div>
+            <div class="button-container">
+                <input type="button" id="rename_button" value="" onclick="renameActiveFiles()">
+            </div>
+            <div class="button-container">
+                <input type="button" id="dont_upload_button" value="" onclick="changeDeleteClassFlag()">
+            </div>
+            <div class="button-container">
+                <input type="button" id="upload_button" value="" onclick="uploadFiles()">
+            </div>
+        </div>
+        <div class="images-container" id="images_container"></div>
+    </div>
+    <div id="preview_template" style="display: none;">
+        <div class="image">
+            <img src="" alt="" height="300px">
+            <div class="object-name"></div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/static/localization/{{lang}}.js"></script>
+    <script type="text/javascript" src="/static/main.js"></script>
+</body>
+
+</html>

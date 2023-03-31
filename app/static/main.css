@@ -1,0 +1,166 @@
+body {
+    background-color: #333;
+    color: #ccc;
+}
+
+.container {
+    margin: 15px;
+}
+
+.buttons-panel {
+    padding: 0px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.button-container {
+    margin: 0px 15px 15px 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.input-files-label {
+    position: relative;
+    display: inline-block;
+}
+
+.input-files-label span,
+input[type=button] {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 700;
+    vertical-align: middle;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    background-color: #ffad03;
+    line-height: 22px;
+    min-height: 40px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border: none;
+    margin: 0;
+    transition: background-color 0.2s;
+}
+
+.input-files-label input[type=file] {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    display: block;
+    width: 0;
+    height: 0;
+}
+
+.input-files-label:hover span,
+input[type=button]:hover {
+    background-color: #ffbe03;
+}
+
+.input-files-label:active span,
+input[type=button]:active {
+    background-color: #cf8a00;
+}
+
+.images-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    cursor: pointer;
+}
+
+.image {
+    display: block;
+    text-align: center;
+    padding: 15px 0px;
+}
+
+.image-active {
+    background-color: #585858;
+}
+
+.object-name {
+    margin-top: 10px;
+    font: 1.2em "Robotico";
+}
+
+.image-to-delete>.object-name {
+    text-decoration: line-through;
+    color: #666;
+}
+
+.image-to-delete>img {
+    opacity: 0.3;
+}
+
+/* POPUP */
+.popup {
+    width: 100%;
+    min-height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0px;
+}
+
+.popup .popup-content {
+    text-align: center;
+    color: #111;
+    width: 100vw;
+    max-width: 1000px;
+    padding: 30px;
+    background-color: #747474;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px #000;
+}
+
+.popup-content h2 {
+    font-size: 2.7em;
+}
+
+/* PROGRESS BAR */
+.progress-bar {
+    position: relative;
+    min-height: 7vh;
+    width: 100%;
+    margin-bottom: 30px;
+    border: 2px solid #888;
+    border-radius: 10px;
+    background-color: #aaa;
+}
+
+.progress-bar .progress {
+    min-height: 7vh;
+    background-color: #cf8a00;
+    border-radius: 10px;
+    margin: 1px;
+    width: 0%;
+}
+
+.progress-bar .progress-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4em;
+}
+
+.progress-bar-errors {
+    text-align: left;
+    font-size: 1.1em;
+    color: #830000;
+}
+
+.progress-bar-errors ul {
+    list-style-type: disclosure-closed;
+}

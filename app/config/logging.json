@@ -1,0 +1,36 @@
+{
+    "version": 1,
+    "formatters": {
+        "base": {
+            "format": "[%(asctime)s] [%(levelname)s] %(message)s",
+            "datefmt": "%Y-%m-%d %H:%M:%S"
+        }
+    },
+    "handlers": {
+        "errors": {
+            "class": "logging.FileHandler",
+            "filename": "logs/errors.log",
+            "level": "ERROR",
+            "mode": "a",
+            "encoding": "utf-8",
+            "formatter": "base"
+        },
+        "info": {
+            "class": "logging.FileHandler",
+            "filename": "logs/info.log",
+            "level": "INFO",
+            "mode": "a",
+            "encoding": "utf-8",
+            "formatter": "base"
+        }
+    },
+    "loggers": {
+        "root": {
+            "level": "INFO",
+            "handlers": [
+                "errors",
+                "info"
+            ]
+        }
+    }
+}
