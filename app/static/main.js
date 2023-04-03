@@ -7,6 +7,7 @@ document.addEventListener('keyup', keyEventListner);
 document.addEventListener('keydown', keyEventListner);
 
 function keyEventListner(event) {
+    if (event.repeat) return;
     if (event.key === 'F2') {
         renameActiveFiles();
     } else if (event.key === 'F4') {
