@@ -36,21 +36,22 @@ class App(Quart):
         if type(scripts) == str:
             scripts = [scripts]
         results: typing.List[typing.Tuple[str, int, str, str]] = list()
-        for script in scripts:
+        for script_cmd in scripts:
+            script: list = script_cmd.split(' ')
             for argument in arguments:
-                script += f' {str(argument)}'
+                script.append(str(argument))
             results.append(await self.__run_script(script))
         return results
 
-    async def __run_script(self, script) -> typing.Tuple[str, int, str, str]:
-        proc: asyncio.subprocess.Process = await asyncio.create_subprocess_shell(script,
-                                                                                 stdout=asyncio.subprocess.PIPE,
-                                                                                 stderr=asyncio.subprocess.PIPE,
-                                                                                 cwd=self.settings.main['scripts_dir'])
+    async def __run_script(self, script: list) -> typing.Tuple[str, int, str, str]:
+        proc: asyncio.subprocess.Process = await asyncio.create_subprocess_exec(*script,
+                                                                                stdout=asyncio.subprocess.PIPE,
+                                                                                stderr=asyncio.subprocess.PIPE,
+                                                                                cwd=self.settings.main['scripts_dir'])
         stdout, stderr = await proc.communicate()
         out: str = stdout.decode() if stdout else ''
         err: str = stderr.decode() if stderr else ''
-        return script, proc.returncode, out, err
+        return ' '.join(script), proc.returncode, out, err
 
     @staticmethod
     def get_checksum(stream: IO[bytes] = None, file_path: str = None):
