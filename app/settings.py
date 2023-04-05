@@ -20,6 +20,7 @@ class Settings:
         self.main['keyfile']: str = None
         self.main['supported_languages']: tuple = tuple(map(lambda x: x.stem,
                                                             pathlib.Path('app/static/localization').glob('*.js')))
+        self.main['show_after_upload_scripts_error_on_client'] = False
 
     def load(self):
         config_path: pathlib.Path = pathlib.Path('app/config')

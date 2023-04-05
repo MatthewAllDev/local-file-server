@@ -6,5 +6,6 @@
     "after_upload_scripts": {
         ".jpg": "python image_processor.py",
         ".jpeg": "python image_processor.py"
-    }
+    },
+    "show_after_upload_scripts_error_on_client": true
 }

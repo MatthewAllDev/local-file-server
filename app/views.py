@@ -2,7 +2,7 @@ from .app import app
 from quart import render_template, make_response, request
 from quart.datastructures import FileStorage
 from werkzeug.datastructures import MultiDict
-from werkzeug.exceptions import BadRequestKeyError
+from werkzeug.exceptions import BadRequestKeyError, InternalServerError
 import pathlib
 import re
 
@@ -58,4 +58,6 @@ async def upload_file():
         script, return_code, _, error = result
         if return_code != 0:
             app.logger.error(f'SCRIPT ERROR: {script}: {error}')
+            if app.settings.main['show_after_upload_scripts_error_on_client']:
+                return await make_response(f'SCRIPT ERROR: {script}: {error}', 500)
     return await make_response()

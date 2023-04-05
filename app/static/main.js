@@ -167,7 +167,7 @@ function uploadFile(fileData, progressBar = undefined) {
         if (response.status >= 200 && response.status < 300) {
             return Promise.resolve(response)
         } else {
-            return Promise.reject(new Error(`${response.status} ${response.statusText}`))
+            return response.text().then((text) => { return Promise.reject(new Error(`${response.status} ${text}`)) });
         }
     }
     showError = (error) => {
