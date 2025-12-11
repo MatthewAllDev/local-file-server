@@ -5,6 +5,7 @@ from hashlib import md5
 import asyncio
 import typing
 import os
+import webbrowser
 
 
 class App(Quart):
@@ -14,6 +15,10 @@ class App(Quart):
         super().__init__(*args, **kwargs)
         self.settings: Settings = Settings()
         self.settings.load()
+
+    def open_in_browser(self) -> None:
+        url: str = f"http://{self.settings.main['host']}:{self.settings.main['port']}"
+        webbrowser.open(url)
 
     def run(self,
             use_reloader: bool = True,
