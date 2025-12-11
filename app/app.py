@@ -4,6 +4,7 @@ from typing import IO
 from hashlib import md5
 import asyncio
 import typing
+import os
 
 
 class App(Quart):
@@ -44,13 +45,14 @@ class App(Quart):
         return results
 
     async def __run_script(self, script: list) -> typing.Tuple[str, int, str, str]:
+        encoding: str = __detect_subprocess_encoding()
         proc: asyncio.subprocess.Process = await asyncio.create_subprocess_exec(*script,
                                                                                 stdout=asyncio.subprocess.PIPE,
                                                                                 stderr=asyncio.subprocess.PIPE,
                                                                                 cwd=self.settings.main['scripts_dir'])
         stdout, stderr = await proc.communicate()
-        out: str = stdout.decode() if stdout else ''
-        err: str = stderr.decode() if stderr else ''
+        out: str = stdout.decode(encoding, errors="replace") if stdout else ''
+        err: str = stderr.decode(encoding, errors="replace") if stderr else ''
         return ' '.join(script), proc.returncode, out, err
 
     @staticmethod
@@ -70,6 +72,14 @@ class App(Quart):
             raise exception
         stream.seek(0)
         return checksum.hexdigest()
+
+
+def __detect_subprocess_encoding():
+    if os.name == "nt":
+        if "WT_SESSION" in os.environ or os.environ.get("TERM"):
+            return "utf-8"
+        return "cp866"
+    return "utf-8"
 
 
 app: App = App(__name__)

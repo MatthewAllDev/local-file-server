@@ -1,3 +1,14 @@
+# Trash files
+*.docx
+
+# Production configuration files
+app/config/*.json
+!app/config/logging.json
+
+# Production scripts
+app/scripts/*
+!app/scripts/image_processor.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
